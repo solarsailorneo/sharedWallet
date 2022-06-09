@@ -17,8 +17,8 @@ contract SharedWallet is Ownable {
         _;
     }
 
-    function reduceAllowance(address _sender, uint256 _amount) private {
-        allowance[_sender] = allowance[_sender] - _amount;
+    function reduceAllowance(address _sender, uint256 _amount) internal {
+        allowance[_sender] -= _amount;
     }
 
     function withdrawMoney(address payable _to, uint256 _amount) public ownerOrAllowed(_amount) {
