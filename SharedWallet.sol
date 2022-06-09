@@ -13,7 +13,7 @@ contract SharedWallet is Ownable {
     }
 
     modifier ownerOrAllowed(uint256 _amount) {
-        require(msg.sender == owner() ||  _amount < allowance[msg.sender], "You are not allowed to withdraw from this account or withdrawing more than allowed");
+        require(msg.sender == owner() ||  _amount <= allowance[msg.sender], "You are not allowed to withdraw from this account or withdrawing more than allowed");
         _;
     }
 
