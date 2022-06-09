@@ -10,8 +10,12 @@ contract SharedWallet {
         owner = msg.sender;
     }
 
-    function withdrawMoney(address payable _to, uint256 _amount) public {
+    modifier onlyOwner() {
         require(owner == msg.sender, "Your wallet is not authorized to withdraw funds");
+        _;
+    }
+
+    function withdrawMoney(address payable _to, uint256 _amount) public onlyOwner {
         _to.transfer(_amount);
     }
     
